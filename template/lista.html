@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="{{ url_for('create_task') }}">Criar Nova Tarefa</a>
+<table>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Vencimento</th>
+            <th>Prioridade</th>
+            <th>Concluída</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarefa in tarefas %}
+            <tr>
+                <td>{{ tarefa.titulo }}</td>
+                <td>{{ tarefa.descrição }}</td>
+                <td>{{ tarefa.vencimento.strftime('%Y-%m-%d') }}</td>
+                <td>{{ tarefa.prioridade }}</td>
+                <td>{{ 'Sim' if tarefa.concluida else 'Não' }}</td>
+                <td>
+                    <a href="{{ url_for('edit_task', task_id=task.id) }}">Editar</a>
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}">Excluir</a>
+                    <a href="{{ url_for('complete_task', task_id=task.id) }}">
+                        {{ 'Marcar como Não Concluída' if tarefa.concluida else 'Marcar como Concluída' }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
