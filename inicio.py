@@ -15,7 +15,7 @@ with app.app_context():
 @app.route('/')
 def index():
     tarefas = Tarefa.query.order_by(Tarefa.vencimento).all()
-    return render_template('lista.html', titulo='Tarefas', tarefas=tarefas)
+    return render_template('lista.html', titulo='Tarefas', tarefas=Tarefa)
 
 
 @app.route('/criar', methods=['POST'])
