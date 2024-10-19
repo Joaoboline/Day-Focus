@@ -12,4 +12,4 @@ class Tarefa(db.Model):
     concluida = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return '<Name %r>' % self.title
+        return '<Name %r>' % self.titulo
